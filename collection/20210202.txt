@@ -105,3 +105,148 @@ BUILD SUCCESSFUL in 16s
 22 actionable tasks: 22 executed
 
 Build Analyzer results available
+
+
+- - - - - - - - - - - - 2021-02-23 08:35:18  周二 - - - - - - - - - - - -
+
+> Task :app:transformClassesWithCUSTOMP_LUGIN_KAIXINForDebug
+==> transformInput is : []
+==> transformInput is : []
+==> transformInput is : []
+==> transformInput is : [ImmutableDirectoryInput{name=db8a2a4276d7c1c5a0507fea88909f7f7b1e15c5, file=/Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes, contentTypes=CLASSES, scopes=PROJECT, changedFiles={}}]
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/MainActivity.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/MainActivity.class
+classFile.name : MainActivity.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/MainActivity.class
+
+ClassVisitor className is : com/cwj/myapplication/MainActivity
+visitMethod methodName is : <init>
+visitMethod methodName is : onCreate
+visitMethod methodName is : jump
+visitMethod methodName is : sayHello1
+visitMethod methodName is : sayHello2
+visitMethod methodName is : sayHello3
+visitMethod methodName is : lambda$jump$0
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClassIgnoreClass.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClassIgnoreClass.class
+classFile.name : TargetClassIgnoreClass.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClassIgnoreClass.class
+
+ClassVisitor className is : com/cwj/myapplication/TargetClassIgnoreClass
+Annotation --> visible is : false, descriptor is Lcom/cwj/myapplication/sdk/IgnoreTraceMethodCostClass;
+isIgnore is true
+visitMethod methodName is : <init>
+visitMethod methodName is : showMethod
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/BuildConfig.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/BuildConfig.class
+classFile.name : BuildConfig.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/BuildConfig.class
+
+ClassVisitor className is : com/cwj/myapplication/BuildConfig
+visitMethod methodName is : <init>
+visitMethod methodName is : <clinit>
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/MainActivity$1.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/MainActivity$1.class
+classFile.name : MainActivity$1.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/MainActivity$1.class
+
+ClassVisitor className is : com/cwj/myapplication/MainActivity$1
+visitMethod methodName is : <init>
+visitMethod methodName is : onClick
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClassIgnoreMethod.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClassIgnoreMethod.class
+classFile.name : TargetClassIgnoreMethod.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClassIgnoreMethod.class
+
+ClassVisitor className is : com/cwj/myapplication/TargetClassIgnoreMethod
+visitMethod methodName is : <init>
+visitMethod methodName is : showMethod1
+visitMethod methodName is : showMethod2
+visible is : false, descriptor is Lcom/cwj/myapplication/sdk/IgnoreTraceMethodCostMethod;
+isIgnore is true
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClass.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClass.class
+classFile.name : TargetClass.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/intermediates/javac/debug/classes/com/cwj/myapplication/TargetClass.class
+
+ClassVisitor className is : com/cwj/myapplication/TargetClass
+visitMethod methodName is : <init>
+visitMethod methodName is : showCostTime
+==> transformInput is : [ImmutableDirectoryInput{name=2c5e2b9dc59a6d13dc444514505f4814ae101916, file=/Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug, contentTypes=CLASSES, scopes=PROJECT, changedFiles={}}]
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinClassSayHello.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinClassSayHello.class
+classFile.name : KotlinClassSayHello.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinClassSayHello.class
+
+ClassVisitor className is : com/cwj/myapplication/KotlinClassSayHello
+Annotation --> visible is : true, descriptor is Lkotlin/Metadata;
+isIgnore is false
+visitMethod methodName is : sayHello
+visitMethod methodName is : <init>
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/MyApplication.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/MyApplication.class
+classFile.name : MyApplication.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/MyApplication.class
+
+ClassVisitor className is : com/cwj/myapplication/MyApplication
+Annotation --> visible is : true, descriptor is Lkotlin/Metadata;
+isIgnore is false
+visitMethod methodName is : attachBaseContext
+visitMethod methodName is : onCreate
+visitMethod methodName is : <init>
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinActivity1.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinActivity1.class
+classFile.name : KotlinActivity1.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinActivity1.class
+
+ClassVisitor className is : com/cwj/myapplication/KotlinActivity1
+Annotation --> visible is : true, descriptor is Lkotlin/Metadata;
+isIgnore is false
+visitMethod methodName is : onCreate
+visitMethod methodName is : backAct
+visitMethod methodName is : <init>
+directoryInput.file is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug
+classFile is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinActivity1$backAct$1.class
+classFile.parent is : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication
+classFile.absolutePath : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinActivity1$backAct$1.class
+classFile.name : KotlinActivity1$backAct$1.class
+classFile.path : /Users/yannischeng/Android_MySelf/ASMProjectForAndroid/app/build/tmp/kotlin-classes/debug/com/cwj/myapplication/KotlinActivity1$backAct$1.class
+
+ClassVisitor className is : com/cwj/myapplication/KotlinActivity1$backAct$1
+Annotation --> visible is : true, descriptor is Lkotlin/Metadata;
+isIgnore is false
+visitMethod methodName is : onClick
+visitMethod methodName is : <init>
+==> transformInput is : []
+
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugNativeLibs
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:mergeExtDexDebug
+> Task :app:mergeDebugJavaResource
+> Task :app:mergeDexDebug
+> Task :app:packageDebug
+> Task :app:assembleDebug
+
+BUILD SUCCESSFUL in 17s
+22 actionable tasks: 22 executed
+
+Build Analyzer results available
