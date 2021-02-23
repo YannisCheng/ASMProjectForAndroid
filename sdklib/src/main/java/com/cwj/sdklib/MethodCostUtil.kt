@@ -103,9 +103,9 @@ object MethodCostUtil {
         val methodProperties = JSONObject()
 
         val stackTraceElements = thread.stackTrace
-        stackTraceElements.forEach {
+        /*stackTraceElements.forEach {
             Log.e(TAG, "stackTraceElements item is : $it")
-        }
+        }*/
         val replace = methods[0].replace("/", ".") + "." + methods[1];
         for (stackTraceElement in stackTraceElements) {
             if (stackTraceElement.toString().contains("MethodCostUtil")) {
