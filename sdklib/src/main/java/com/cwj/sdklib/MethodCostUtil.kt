@@ -3,6 +3,7 @@ package com.cwj.sdklib;
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.cwj.sdklib.method_stack.AppTimeCounterManager
 import org.json.JSONObject
 import java.util.concurrent.ConcurrentHashMap
 
@@ -17,14 +18,28 @@ object MethodCostUtil {
 
     @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     fun recodeStaticMethodCostStart(methodName: String) {
-        Log.e(TAG, "recodeStaticMethodCostStart methodName is : $methodName")
+        //Log.e(TAG, "recodeStaticMethodCostStart methodName is : $methodName")
         METHOD_COSTS[methodName] = System.currentTimeMillis()
     }
 
+    @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    fun recodeStaticApplicationMethodCostStart(methodName: String) {
+        //Log.e(TAG, "recodeStaticMethodCostStart methodName is : $methodName")
+        METHOD_COSTS[methodName] = System.currentTimeMillis()
+        val methods = methodName.split("&".toRegex()).toTypedArray()
+        if (methods.size == 2) {
+            if (methods[1] == "onCreate") {
+                AppTimeCounterManager.appTimeCounterManager.onAppCreateStart()
+            }
+            if (methods[1] == "attachBaseContext") {
+                AppTimeCounterManager.appTimeCounterManager.onAppAttachBaseContextStart()
+            }
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     fun recodeStaticMethodCostEnd(methodAbout: String) {
-        Log.e(TAG, "recodeObjectMethodCostEnd: " + methodAbout)
+        //Log.e(TAG, "recodeObjectMethodCostEnd: $methodAbout")
         var blockTime: Int = 0
         blockTime = 0
         synchronized(MethodCostUtil::class.java) {
@@ -33,31 +48,41 @@ object MethodCostUtil {
                     val startTime = METHOD_COSTS[methodAbout]!!
                     val costTime = (System.currentTimeMillis() - startTime).toInt()
                     METHOD_COSTS.remove(methodAbout)
+                    //如果该方法的执行时间大于 thresholdTime 则记录
+                    if (costTime >= blockTime) {
+                        trackMethodCost(
+                            methodAbout,
+                            Thread.currentThread(),
+                            blockTime,
+                            costTime
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    fun recodeStaticApplicationMethodCostEnd(methodAbout: String) {
+        //Log.e(TAG, "ApplicationMethodCostEnd: $methodAbout")
+        synchronized(MethodCostUtil::class.java) {
+            try {
+                if (METHOD_COSTS.containsKey(methodAbout)) {
+                    METHOD_COSTS.remove(methodAbout)
                     val methods = methodAbout.split("&".toRegex()).toTypedArray()
-                    // Application启动耗时相关单独处理
-                    /*if (classObj is Application) {
-                        if (methods.size == 2) {
-                            if (methods[1] == "onCreate") {
-                                AppTimeCounterManager.appTimeCounterManager.onAppCreateEnd()
-                                return
-                            }
-                            if (methods[1] == "attachBaseContext") {
-                                AppTimeCounterManager.appTimeCounterManager.onAppAttachBaseContextEnd()
-                                return
-                            }
+                    if (methods.size == 2) {
+                        if (methods[1] == "onCreate") {
+                            AppTimeCounterManager.appTimeCounterManager.onAppCreateEnd()
+                            return
                         }
-                    } else {*/
-                        //如果该方法的执行时间大于 thresholdTime 则记录
-                        if (costTime >= blockTime) {
-                            trackMethodCost(
-                                methodAbout,
-                                Thread.currentThread(),
-                                blockTime,
-                                costTime
-                            )
+                        if (methods[1] == "attachBaseContext") {
+                            AppTimeCounterManager.appTimeCounterManager.onAppAttachBaseContextEnd()
+                            return
                         }
                     }
-                /*}*/
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -65,7 +90,7 @@ object MethodCostUtil {
     }
 
     /**
-     * 方法耗时数据构造
+     * 非Application类的方法耗时数据构造
      */
     private fun trackMethodCost(
         methodAbout: String,

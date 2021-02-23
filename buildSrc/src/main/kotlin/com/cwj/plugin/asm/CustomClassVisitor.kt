@@ -15,6 +15,7 @@ class CustomClassVisitor(cv: ClassVisitor) : ClassVisitor(ASM6, cv) {
     var isInterface: Boolean = false
     var className: String = "null"
     private val localVar = "Y_c23_N2_45_e34_$"
+    private var superApplicationStr:String = ""
 
     var isIgnore = false;
 
@@ -28,16 +29,21 @@ class CustomClassVisitor(cv: ClassVisitor) : ClassVisitor(ASM6, cv) {
     ) {
         isInterface = (access and ACC_INTERFACE) != 0
         cv.visit(version, access, name, signature, superName, interfaces)
+        println(" classVisit visit >###> version is : $version, access is : $access, name is : $name, signature is : $signature, superName is : $superName, interfaces is : $interfaces")
         name?.let {
             className = name
             println("ClassVisitor className is : $name")
+        }
+
+        superName?.let {
+            superApplicationStr = superName
         }
     }
 
     override fun visitAnnotation(descriptor: String?, visible: Boolean): AnnotationVisitor {
         println("Annotation --> visible is : $visible, descriptor is $descriptor")
         descriptor?.let {
-            isIgnore = descriptor.equals("Lcom/cwj/sdklib/IgnoreTraceMethodCostClass;")
+            isIgnore = descriptor == "Lcom/cwj/sdklib/IgnoreTraceMethodCostClass;"
             println("isIgnore is $isIgnore")
         }
         return cv.visitAnnotation(descriptor, visible)
@@ -65,7 +71,8 @@ class CustomClassVisitor(cv: ClassVisitor) : ClassVisitor(ASM6, cv) {
                 visitMethod,
                 name,
                 className,
-                localVar
+                localVar,
+                superApplicationStr
             )
         }
         return visitMethod

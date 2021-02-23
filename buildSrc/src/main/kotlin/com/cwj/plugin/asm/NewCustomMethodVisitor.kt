@@ -12,9 +12,10 @@ import org.objectweb.asm.Opcodes.*
  */
 class NewCustomMethodVisitor(
     mv: MethodVisitor,
-    val methodName: String,
-    val className: String,
-    val localVar: String
+    private val methodName: String,
+    private val className: String,
+    private val localVar: String,
+    private val superApplicationStr: String
 ) : MethodVisitor(ASM6, mv) {
 
     var isIgnore = false;
@@ -33,41 +34,71 @@ class NewCustomMethodVisitor(
         if (!isIgnore) {
             // 在方法进入时，重新设置 "类路径+当前方法名"
             mv.visitVarInsn(ALOAD, 0)
-            mv.visitLdcInsn(className + "&" + methodName)
+            mv.visitLdcInsn("$className&$methodName")
             mv.visitFieldInsn(PUTFIELD, className, localVar, "Ljava/lang/String;")
-            mv.visitFieldInsn(GETSTATIC,"com/cwj/sdklib/MethodCostUtil","INSTANCE","Lcom/cwj/sdklib/MethodCostUtil;")
+            mv.visitFieldInsn(
+                GETSTATIC,
+                "com/cwj/sdklib/MethodCostUtil",
+                "INSTANCE",
+                "Lcom/cwj/sdklib/MethodCostUtil;"
+            )
             // 获取指定的局部 的值
             mv.visitVarInsn(ALOAD, 0)
             mv.visitFieldInsn(GETFIELD, className, localVar, "Ljava/lang/String;")
-            mv.visitMethodInsn(
-                INVOKEVIRTUAL,
-                "com/cwj/sdklib/MethodCostUtil",
-                "recodeStaticMethodCostStart",
-                "(Ljava/lang/String;)V",
-                false
-            )
+            if (superApplicationStr != "" && superApplicationStr == "android/app/Application") {
+                mv.visitMethodInsn(
+                    INVOKEVIRTUAL,
+                    "com/cwj/sdklib/MethodCostUtil",
+                    "recodeStaticApplicationMethodCostStart",
+                    "(Ljava/lang/String;)V",
+                    false
+                )
+            } else {
+                mv.visitMethodInsn(
+                    INVOKEVIRTUAL,
+                    "com/cwj/sdklib/MethodCostUtil",
+                    "recodeStaticMethodCostStart",
+                    "(Ljava/lang/String;)V",
+                    false
+                )
+            }
         }
     }
 
 
     override fun visitInsn(opcode: Int) {
         if (!isIgnore) {
-            if (opcode >= IRETURN && opcode <= RETURN || opcode == ATHROW) {
+            if (opcode in IRETURN..RETURN || opcode == ATHROW) {
                 // 在方法退出时，重新设置 "类路径+当前方法名"
                 mv.visitVarInsn(ALOAD, 0)
-                mv.visitLdcInsn(className + "&" + methodName)
+                mv.visitLdcInsn("$className&$methodName")
                 mv.visitFieldInsn(PUTFIELD, className, localVar, "Ljava/lang/String;")
                 // 获取指定的局部 的值
-                mv.visitFieldInsn(GETSTATIC,"com/cwj/sdklib/MethodCostUtil","INSTANCE","Lcom/cwj/sdklib/MethodCostUtil;")
+                mv.visitFieldInsn(
+                    GETSTATIC,
+                    "com/cwj/sdklib/MethodCostUtil",
+                    "INSTANCE",
+                    "Lcom/cwj/sdklib/MethodCostUtil;"
+                )
                 mv.visitVarInsn(ALOAD, 0)
                 mv.visitFieldInsn(GETFIELD, className, localVar, "Ljava/lang/String;")
-                mv.visitMethodInsn(
-                    INVOKEVIRTUAL,
-                    "com/cwj/sdklib/MethodCostUtil",
-                    "recodeStaticMethodCostEnd",
-                    "(Ljava/lang/String;)V",
-                    false
-                )
+                if (superApplicationStr != "" && superApplicationStr == "android/app/Application") {
+                    mv.visitMethodInsn(
+                        INVOKEVIRTUAL,
+                        "com/cwj/sdklib/MethodCostUtil",
+                        "recodeStaticApplicationMethodCostEnd",
+                        "(Ljava/lang/String;)V",
+                        false
+                    )
+                } else {
+                    mv.visitMethodInsn(
+                        INVOKEVIRTUAL,
+                        "com/cwj/sdklib/MethodCostUtil",
+                        "recodeStaticMethodCostEnd",
+                        "(Ljava/lang/String;)V",
+                        false
+                    )
+                }
             }
         }
         mv.visitInsn(opcode)

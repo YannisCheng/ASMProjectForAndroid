@@ -10,16 +10,6 @@ public class AppCounter {
     private long mAttachTime;
     private long mAttachCountTime;
 
-    public long getStartCountTime() {
-        return mStartCountTime;
-    }
-
-
-    public long getAttachCountTime() {
-        return mAttachCountTime;
-    }
-
-
     private CounterInfo mCounterInfo = new CounterInfo();
 
     public void start() {
