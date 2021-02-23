@@ -1,0 +1,56 @@
+//use java library
+//apply plugin: 'java-library'
+//use groovy library
+//apply plugin: 'groovy'
+
+apply plugin: 'kotlin'
+
+buildscript {
+    ext.kotlin_version = "1.4.20"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+sourceSets {
+    main{
+        kotlin {
+            srcDir 'src/main/kotlin'
+        }
+//      groovy{
+//            srcDir 'src/main/groovy'
+//        }
+        java{
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
+
+dependencies {
+    // 将插件实现限制为Gradle的公共API
+    implementation gradleApi()
+    //implementation localGroovy()
+    implementation 'org.ow2.asm:asm:6.0'
+    implementation 'org.ow2.asm:asm-commons:6.0'
+    implementation 'org.ow2.asm:asm-analysis:6.0'
+    implementation 'org.ow2.asm:asm-util:6.0'
+    implementation 'org.ow2.asm:asm-tree:6.0'
+    implementation 'com.android.tools.build:gradle:4.0.2'
+}
