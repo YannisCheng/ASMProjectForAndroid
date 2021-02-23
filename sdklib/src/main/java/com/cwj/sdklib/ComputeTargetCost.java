@@ -1,4 +1,4 @@
-package com.cwj.myapplication.sdk;
+package com.cwj.sdklib;
 
 
 /**
@@ -7,7 +7,7 @@ package com.cwj.myapplication.sdk;
  * @author  wenjia.Cheng  cwj1714@163.com
  * @date    2021/2/5 14:17
 */
-public class ComputeTargetCost2 {
+public class ComputeTargetCost {
 
     private static final ComputeCostRealValue costCompute = new ComputeCostRealValue();
 

@@ -1,4 +1,4 @@
-package com.cwj.myapplication.sdk.method_stack;
+package com.cwj.sdklib.method_stack;
 
 /**
  * @desc: App启动耗时

@@ -84,7 +84,7 @@ class CustomTransform(val project: Project) : Transform() {
                              * classFile.name : MainActivity.class
                              */
                             if (classFile.name.endsWith(".class")) {
-                                if (!classFile.absolutePath.contains("com/cwj/myapplication/sdk")) {
+                                if (!classFile.absolutePath.contains("com/cwj/sdklib")) {
                                     println("directoryInput.file is : ${directoryInput.file}")
                                     println("classFile is : ${classFile}")
                                     println("classFile.parent is : ${classFile.parent}")
@@ -131,35 +131,6 @@ class CustomTransform(val project: Project) : Transform() {
                     }
                 }
             }
-        }
-    }
-
-    fun path2ClassName(pathName: String):String {
-        return pathName.replace(File.separator, ".").replace(".class", "")
-    }
-
-    fun writeToFile(name: String, bytes: ByteArray?) {
-        try {
-            val file =
-                File("/Users/yannischeng/Android_MySelf/ASMProject/buildSrc/$name")
-            var outputStream: FileOutputStream? = null
-            if (file.exists()) {
-                if (file.delete()) {
-                    if (file.createNewFile()) {
-                        outputStream = FileOutputStream(file)
-                        outputStream.write(bytes)
-                    }
-                }
-            } else {
-                outputStream = FileOutputStream(file)
-                outputStream.write(bytes)
-            }
-            if (outputStream != null) {
-                outputStream.flush()
-                outputStream.close()
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
         }
     }
 

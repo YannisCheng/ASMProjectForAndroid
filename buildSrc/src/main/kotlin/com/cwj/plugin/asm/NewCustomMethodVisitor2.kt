@@ -25,7 +25,7 @@ class NewCustomMethodVisitor2(
     override fun visitAnnotation(descriptor: String?, visible: Boolean): AnnotationVisitor {
         println("visible is : $visible, descriptor is $descriptor")
         descriptor?.let {
-            isIgnore = descriptor.equals("Lcom/cwj/myapplication/sdk/IgnoreTraceMethodCostMethod;")
+            isIgnore = descriptor.equals("Lcom/cwj/sdklib/IgnoreTraceMethodCostMethod;")
             println("isIgnore is $isIgnore")
         }
         return mv.visitAnnotation(descriptor, visible)
@@ -43,7 +43,7 @@ class NewCustomMethodVisitor2(
             mv.visitFieldInsn(GETFIELD, className, localVar, "Ljava/lang/String;")
             mv.visitMethodInsn(
                 INVOKESTATIC,
-                "com/cwj/myapplication/sdk/ComputeTargetCost",
+                "com/cwj/sdklib/ComputeTargetCost",
                 "startTime",
                 "(Ljava/lang/String;)V",
                 false
@@ -63,7 +63,7 @@ class NewCustomMethodVisitor2(
                 mv.visitFieldInsn(GETFIELD, className, localVar, "Ljava/lang/String;")
                 mv.visitMethodInsn(
                     INVOKESTATIC,
-                    "com/cwj/myapplication/sdk/ComputeTargetCost",
+                    "com/cwj/sdklib/ComputeTargetCost",
                     "stopTime",
                     "(Ljava/lang/String;)V",
                     false

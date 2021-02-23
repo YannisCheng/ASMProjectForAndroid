@@ -1,4 +1,4 @@
-package com.cwj.myapplication.sdk;
+package com.cwj.sdklib;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

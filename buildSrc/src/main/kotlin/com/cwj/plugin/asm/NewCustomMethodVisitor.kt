@@ -22,7 +22,7 @@ class NewCustomMethodVisitor(
     override fun visitAnnotation(descriptor: String?, visible: Boolean): AnnotationVisitor {
         println("visible is : $visible, descriptor is $descriptor")
         descriptor?.let {
-            isIgnore = descriptor.equals("Lcom/cwj/myapplication/sdk/IgnoreTraceMethodCostMethod;")
+            isIgnore = descriptor.equals("Lcom/cwj/sdklib/IgnoreTraceMethodCostMethod;")
             println("isIgnore is $isIgnore")
         }
         return mv.visitAnnotation(descriptor, visible)
@@ -35,13 +35,13 @@ class NewCustomMethodVisitor(
             mv.visitVarInsn(ALOAD, 0)
             mv.visitLdcInsn(className + "&" + methodName)
             mv.visitFieldInsn(PUTFIELD, className, localVar, "Ljava/lang/String;")
-            mv.visitFieldInsn(GETSTATIC,"com/cwj/myapplication/sdk/MethodCostUtil","INSTANCE","Lcom/cwj/myapplication/sdk/MethodCostUtil;")
+            mv.visitFieldInsn(GETSTATIC,"com/cwj/sdklib/MethodCostUtil","INSTANCE","Lcom/cwj/sdklib/MethodCostUtil;")
             // 获取指定的局部 的值
             mv.visitVarInsn(ALOAD, 0)
             mv.visitFieldInsn(GETFIELD, className, localVar, "Ljava/lang/String;")
             mv.visitMethodInsn(
                 INVOKEVIRTUAL,
-                "com/cwj/myapplication/sdk/MethodCostUtil",
+                "com/cwj/sdklib/MethodCostUtil",
                 "recodeStaticMethodCostStart",
                 "(Ljava/lang/String;)V",
                 false
@@ -58,12 +58,12 @@ class NewCustomMethodVisitor(
                 mv.visitLdcInsn(className + "&" + methodName)
                 mv.visitFieldInsn(PUTFIELD, className, localVar, "Ljava/lang/String;")
                 // 获取指定的局部 的值
-                mv.visitFieldInsn(GETSTATIC,"com/cwj/myapplication/sdk/MethodCostUtil","INSTANCE","Lcom/cwj/myapplication/sdk/MethodCostUtil;")
+                mv.visitFieldInsn(GETSTATIC,"com/cwj/sdklib/MethodCostUtil","INSTANCE","Lcom/cwj/sdklib/MethodCostUtil;")
                 mv.visitVarInsn(ALOAD, 0)
                 mv.visitFieldInsn(GETFIELD, className, localVar, "Ljava/lang/String;")
                 mv.visitMethodInsn(
                     INVOKEVIRTUAL,
-                    "com/cwj/myapplication/sdk/MethodCostUtil",
+                    "com/cwj/sdklib/MethodCostUtil",
                     "recodeStaticMethodCostEnd",
                     "(Ljava/lang/String;)V",
                     false

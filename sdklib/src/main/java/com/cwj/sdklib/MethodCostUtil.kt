@@ -1,11 +1,8 @@
-package com.cwj.myapplication.sdk;
+package com.cwj.sdklib;
 
-import android.app.Application
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.cwj.myapplication.sdk.method_stack.AppTimeCounterManager
-import com.cwj.myapplication.sdk.method_stack.StaticMethodObject
 import org.json.JSONObject
 import java.util.concurrent.ConcurrentHashMap
 

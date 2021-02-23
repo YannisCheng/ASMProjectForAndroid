@@ -1,6 +1,7 @@
 package com.cwj.myapplication;
 
-import com.cwj.myapplication.sdk.IgnoreTraceMethodCostMethod;
+
+import com.cwj.sdklib.IgnoreTraceMethodCostMethod;
 
 /**
  * @author wenjia.Cheng  cwj1714@163.com
