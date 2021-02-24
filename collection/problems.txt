@@ -4,3 +4,5 @@
 2. lambda语法支持
 
 3. 内部类的方法
+
+4. 多个Application的情况

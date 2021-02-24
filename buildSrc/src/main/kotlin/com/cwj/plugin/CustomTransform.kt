@@ -54,7 +54,7 @@ class CustomTransform(val project: Project) : Transform() {
 
     override fun transform(transformInvocation: TransformInvocation?) {
         super.transform(transformInvocation)
-
+        val startTime = System.currentTimeMillis()
         // 获取inputs
         val inputs = transformInvocation?.inputs
         // 遍历inputs，分2种
@@ -84,7 +84,8 @@ class CustomTransform(val project: Project) : Transform() {
                              * classFile.name : MainActivity.class
                              */
                             if (classFile.name.endsWith(".class")) {
-                                if (!classFile.absolutePath.contains("com/cwj/sdklib")) {
+                                val beIgnore = isAndroidGenerated(classFile.name) || isNeedIgnore(classFile.absolutePath)
+                                if (!beIgnore) {
                                     println("directoryInput.file is : ${directoryInput.file}")
                                     println("classFile is : ${classFile}")
                                     println("classFile.parent is : ${classFile.parent}")
@@ -108,6 +109,8 @@ class CustomTransform(val project: Project) : Transform() {
                                         fileOutputStream.write(toByteArray)
                                         IOUtils.closeQuietly(fileOutputStream)
                                     }
+                                } else {
+                                    println("被排除的类：${classFile.name}, path is ${classFile.absolutePath}")
                                 }
                             }
                         }
@@ -132,6 +135,36 @@ class CustomTransform(val project: Project) : Transform() {
                 }
             }
         }
+        println("注意 ----> 本次方法耗时埋点共计花费 ：${System.currentTimeMillis() - startTime} 毫秒")
+    }
+
+    /**
+     * 需要排除Android自动生成的类
+     * @param className
+     * @return
+     */
+    fun isAndroidGenerated(className:String):Boolean {
+        return className.startsWith("R$") ||
+                className.startsWith("R2$") ||
+                className.startsWith("R.") ||
+                className.startsWith("R2.") ||
+                className.startsWith("BuildConfig")
+    }
+
+    /**
+     * 需要排除某些库
+     * @param classFilePath
+     * @return
+     */
+    fun isNeedIgnore(classFilePath:String):Boolean {
+        return classFilePath.contains("com/sensorsdata/analytics/android/sdk") ||
+                classFilePath.contains("androidx") ||
+                classFilePath.contains("com/google/android") ||
+                classFilePath.contains("com/example") ||
+                classFilePath.contains("android/support") ||
+                classFilePath.contains("android/arch") ||
+                classFilePath.contains("com/tencent/smtt") ||
+                classFilePath.contains("com/cwj/sdklib")
     }
 
 }
